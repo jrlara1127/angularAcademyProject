@@ -6,6 +6,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RegisterComponent } from './form/form.component';
 import { TableComponent } from './table/table.component';
 import { FormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
       
@@ -13,7 +14,8 @@ import { FormsModule } from '@angular/forms';
         BrowserModule,
         RouterOutlet, 
         CommonModule,
-        FormsModule
+        FormsModule,
+        NgbModule
      ],
      declarations: [
        AppComponent, RegisterComponent, TableComponent],

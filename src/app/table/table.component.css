@@ -1,0 +1,7 @@
+.selectCell:hover{
+    background-color: gainsboro;
+}
+
+.selectCell:active{
+    background-color: gray;
+}

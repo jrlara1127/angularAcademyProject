@@ -1,21 +1,26 @@
-<table>
-    <tr >
-        <td colspan="5"  style="text-align: center;"><b>{{title}} table</b></td>
-    </tr>  
-    <tr>
-           <td *ngFor="let col of gridColumns" style="border-right: 1px solid black; border-bottom: 1px solid black;">
-               <b>{{col}}</b>
-           </td>
-    </tr>
+<table class="table table-bordered">
+    <thead>
+        <tr  class="table-secondary">
+            <td colspan="5"  style="text-align: center;"><b>{{title +' table' | uppercase }}</b></td>
+        </tr>  
+        <tr  class="table-dark">
+            <td *ngFor="let col of gridColumns">
+                {{col}}
+            </td>
+            <td></td>
+        </tr>
+    </thead>
     
-    <tr *ngFor="let record of records">
-        <td>{{record.idElement}}</td>
-        <td>{{record.name}}</td>
-        <td>{{record.creationDate | date: 'short'}}</td>
-        <td>{{record.comments}}</td>
-        <td>
-            <button (click)="selectedRecord(record)">select</button>
-        </td>
-    </tr>
+    <tbody>
+        <tr *ngFor="let record of records">
+            <td>{{record.idElement}}</td>
+            <td>{{record.name}}</td>
+            <td>{{record.creationDate | date: 'short'}}</td>
+            <td>{{record.comments}}</td>
+            <td (click)="selectedRecord(record)" class="selectCell">
+                Select
+            </td>
+        </tr>
+    </tbody>
+</table>
 
-    
