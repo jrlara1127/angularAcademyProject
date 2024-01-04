@@ -1,0 +1,30 @@
+<h3>Register a new {{title}}: </h3> 
+
+<form>
+    <table>
+      <tr>
+        <td><b>ID</b></td>
+        <td>
+          <input  [(ngModel)]="recordTmp.idElement" type="text" name="idElement" /><br>
+        </td>
+      <tr>
+        <td>
+          <b>Customer Name</b>
+        </td>
+        <td>
+          <input [(ngModel)]="recordTmp.name" type="text" name="name"/><br>
+        </td>
+      </tr>
+      <tr>
+        <td>  
+          <b>Customer Amount</b>
+        </td>
+        <td>
+          <input [(ngModel)]="recordTmp.comments"  type="text" name="comments" /><br>
+        </td>
+      </tr>
+    </table>
+    <!--<input [disabled]="!(myForm.valid)" (click)="Add()" type=button value="Add" />-->
+    <input  type="button" value="send to server" (click)="PosttoServer()" />
+
+</form>
