@@ -5,7 +5,7 @@
   </a>
 </nav>
 
-<br>
+
 <div class="container">
   <div class="row align-items-center">
     <div class="col-md"></div>
@@ -27,6 +27,17 @@
         <button (click)="selectFn(2)">Courses</button>
         <button (click)="selectFn(3)">Projects</button>
         -->
+        <!-- ALERTS -->
+        <br>
+        <div  *ngIf="showSuccess" class="alert alert-success" role="alert">
+          <b>Success!</b>  New record was inserted.
+        </div>
+
+        <div  *ngIf="showError" class="alert alert-danger" role="alert">
+          <b>Error</b>  Something Happend. Please try again
+        </div>
+        <br>
+        <!-- ALERTS -->
       
         <div *ngIf="studentButton" >
             <register-component title='Student' (recordEmitter)="receiveStudentRecord($event)" [recordSelected]="studentRecordTmp" ></register-component>
