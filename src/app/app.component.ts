@@ -26,6 +26,9 @@ export class AppComponent {
 
   title = 'excersise-one-app';
 
+  showSuccess: Boolean = false;
+  showError: Boolean = false;
+
 
   constructor(private infoService: InfoService){
 
@@ -84,16 +87,36 @@ export class AppComponent {
 
   }
 
-
+  saveRecord(recordType:String, record:Record){
+    this.infoService.saveRecord(recordType,record).subscribe( res => {  
+      if(res){       
+              this.showSuccess = true;
+              setTimeout(() => {
+                this.showSuccess = false;
+              }, 1500);
+                if (this.studentButton)
+                  this.loadStudentRecords();
+                else if (this.coursesButton)
+                  this.loadCoursesRecords();
+                else if (this.projectsButton)
+                  this.loadProjectsRecords();
+            } else {
+              this.showError = true;
+              setTimeout(() => {
+                this.showError = false;
+              }, 2500); 
+            } 
+        });
+  }
  
-  receiveStudentRecord(record: Record) { 
-    this.studentsRecords.push(record);
+  receiveStudentRecord(record: Record) {
+      this.saveRecord('students', record);
     }
   receiveCourseRecord(record: Record) {
-    this.coursesRecords.push(record);
+    this.saveRecord('courses', record); 
     }
   receiveProjectRecord(record: Record) {
-    this.projectsRecords.push(record);
+    this.saveRecord('projects', record); 
     }
   
   studentSelectedRecord(record: Record) { 

@@ -39,7 +39,7 @@ export class RegisterComponent  implements OnChanges{
 PosttoServer() {
   console.log(this.recordTmp); 
 
-  if (this.recordTmp.comments != "" && this.recordTmp.name != ""  &&  this.recordTmp.idElement != undefined ){
+  if (this.recordTmp.comments != "" && this.recordTmp.name != ""  &&  this.recordTmp.id != undefined ){
     this.recordEmitter.emit(this.recordTmp);
     this.recordTmp = new Record();
   }

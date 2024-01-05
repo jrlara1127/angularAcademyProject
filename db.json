@@ -1,78 +1,78 @@
 {
-  "students": [ 
-      {
-        "creationDate": "2024-01-04T23:07:06.518Z",
-        "enable": true,
-        "name": "John Jackson",
-        "idElement": 1,
-        "comments": "NA"
-      },
-      {
-        "creationDate": "2024-01-04T23:07:06.518Z",
-        "enable": true,
-        "name": "Annie Hall",
-        "idElement": 2,
-        "comments": "NA"
-      }, 
-      {
-          "creationDate": "2024-01-04T23:07:06.518Z",
-          "enable": true,
-          "name": "Mark Johnson",
-          "idElement": 3,
-          "comments": "NA4"
-      } 
+  "students": [
+    {
+      "creationDate": "2024-01-04T23:07:06.518Z",
+      "enable": true,
+      "name": "John Jackson",
+      "id": 1,
+      "comments": "1st grade student"
+    },
+    {
+      "creationDate": "2024-01-04T23:07:06.518Z",
+      "enable": true,
+      "name": "Annie Hall",
+      "id": 2,
+      "comments": "1st grade student"
+    },
+    {
+      "creationDate": "2024-01-04T23:07:06.518Z",
+      "enable": true,
+      "name": "Mark Johnson",
+      "id": 3,
+      "comments": "2nd grade student"
+    }
   ],
-  "courses": [ 
+  "courses": [
     {
       "creationDate": "2024-01-04T23:07:06.518Z",
       "enable": true,
       "name": "Math",
-      "idElement": 1,
-      "comments": "NA"
+      "id": 1,
+      "comments": "1st grade course"
     },
     {
       "creationDate": "2024-01-04T23:07:06.518Z",
       "enable": true,
       "name": "Life Science",
-      "idElement": 2,
-      "comments": "NA"
-    }, 
+      "id": 2,
+      "comments": "2nd grade course"
+    },
     {
-        "creationDate": "2024-01-04T23:07:06.518Z",
-        "enable": true,
-        "name": "Economics",
-        "idElement": 3,
-        "comments": "NA4"
-    } 
-],
-  "projects": [ 
+      "creationDate": "2024-01-04T23:07:06.518Z",
+      "enable": true,
+      "name": "Economics",
+      "id": 3,
+      "comments": "3th grade course"
+    }
+  ],
+  "projects": [
     {
       "creationDate": "2024-01-04T23:07:06.518Z",
       "enable": true,
       "name": "Solar System Model",
-      "idElement": 1,
+      "id": 1,
       "comments": "Create a scaled-down model of solar system."
     },
     {
       "creationDate": "2024-01-04T23:07:06.518Z",
       "enable": true,
       "name": "Volcano Eruption",
-      "idElement": 2,
+      "id": 2,
       "comments": "Build a volcano model"
-    }, 
+    },
     {
-        "creationDate": "2024-01-04T23:07:06.518Z",
-        "enable": true,
-        "name": "Microorganism Cultivation",
-        "idElement": 3,
-        "comments": "To study microbial growth."
-    } , 
+      "creationDate": "2024-01-04T23:07:06.518Z",
+      "enable": true,
+      "name": "Microorganism Cultivation",
+      "id": 3,
+      "comments": "To study microbial growth."
+    },
     {
-        "creationDate": "2024-01-04T23:07:06.518Z",
-        "enable": true,
-        "name": "Water Filtration",
-        "idElement": 4,
-        "comments": "Design and test a water filtration system."
-    } 
-]
+      "creationDate": "2024-01-04T23:07:06.518Z",
+      "enable": true,
+      "name": "Water Filtration",
+      "id": 4,
+      "comments": "Design and test a water filtration system."
+    }
+  ]
 }
