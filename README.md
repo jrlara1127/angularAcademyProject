@@ -1,7 +1,10 @@
 # ExcersiseOneApp
-The project contains a registration system to add new students, courses or projects to the page. Each kind or register have its own tab to register new entities or see the entities registered before.
+The project contains a registration system to add new students, courses or projects to the page. Each kind or register have its own tab to add new entities or see the entities registered before.
 
 *This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.7.*
+
+
+<img title="a title" alt="Alt text" src="src/assets/img/main_window.JPG">
 
 ## Development server
 
