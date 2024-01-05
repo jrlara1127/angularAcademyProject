@@ -20,6 +20,9 @@ export class RegisterComponent  implements OnChanges{
   @Output()
   recordEmitter = new EventEmitter<Record>();
 
+  
+  showAlert: Boolean = false;
+
   constructor(){
 
   }
@@ -34,9 +37,18 @@ export class RegisterComponent  implements OnChanges{
 
   
 PosttoServer() {
-  console.log(this.recordTmp);
-  this.recordEmitter.emit(this.recordTmp);
-  this.recordTmp = new Record();
+  console.log(this.recordTmp); 
+
+  if (this.recordTmp.comments != "" && this.recordTmp.name != ""  &&  this.recordTmp.idElement != undefined ){
+    this.recordEmitter.emit(this.recordTmp);
+    this.recordTmp = new Record();
+  }
+  else {
+    this.showAlert = true;
+    setTimeout(() => {
+      this.showAlert = false;
+    }, 2500);
+  }
 }
 
 }

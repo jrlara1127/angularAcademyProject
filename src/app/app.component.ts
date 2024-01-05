@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { Record } from './models/record.model';
 import { Subject } from 'rxjs';
+import { InfoService } from './service/info.service';
 
 @Component({
   selector: 'app-root',
@@ -26,18 +27,38 @@ export class AppComponent {
   title = 'excersise-one-app';
 
 
-  constructor() {
-    
-    let records:Array<Record> = new Array<Record>();
-      records.push(new Record("One",1,"NA"));
-      records.push(new Record("Gabriel",2,"NA2"));
-      records.push(new Record("Hellen",3,"NA3"));
-      records.push(new Record("Jorge",4,"NA4"));
+  constructor(private infoService: InfoService){
 
-      this.studentsRecords.push(...records);
-      this.coursesRecords.push(...records);
-      this.projectsRecords.push(...records);
+
   }
+
+  
+  ngOnInit(){
+    this.loadStudentRecords();
+  }
+
+  loadStudentRecords(){
+    this.infoService.loadRecords('students').subscribe(records => {
+      console.log('loadStudentRecords',records);
+      this.studentsRecords = records;
+    });
+  }
+
+  loadCoursesRecords(){
+    this.infoService.loadRecords('courses').subscribe(records => {
+      console.log('loadCoursesRecords',records);
+      this.coursesRecords = records;
+    });
+  }
+
+  
+  loadProjectsRecords(){
+    this.infoService.loadRecords('projects').subscribe(records => {
+      console.log('loadProjectsRecords',records);
+      this.projectsRecords = records;
+    });
+  }
+
   selectFn(button:Number){
     this.studentButton = false;
     this.coursesButton = false;
@@ -47,14 +68,17 @@ export class AppComponent {
       case 1:
         this.studentButton = true;
         this.studentRecordTmp = new Record();
+        this.loadStudentRecords();
         break;
       case 2:
         this.coursesButton = true;
         this.courseRecordTmp = new Record();
+        this.loadCoursesRecords();
         break;
       case 3:
         this.projectsButton = true;
         this.projectRecordTmp = new Record();
+        this.loadProjectsRecords();
         break;
     }
 

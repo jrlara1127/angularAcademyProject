@@ -11,11 +11,18 @@ export class TableComponent implements  OnInit {
   
   gridColumns:String[] = ['ID','Name','Creation Date', 'Comments'];
 
+
+  
+  records: Array<Record> = new Array<Record>();
   
   @Input()
   title!: string;
-  @Input()
-  records:Array<Record> = new Array<Record>();
+
+  @Input("records")
+  set setRecords(_gridData:Array<Record>){
+        this.records = _gridData;   
+     }
+
   @Output()
   recordEmitter = new EventEmitter<Record>();
  

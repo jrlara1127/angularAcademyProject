@@ -12,11 +12,11 @@
     </thead>
     
     <tbody>
-        <tr *ngFor="let record of records">
-            <td>{{record.idElement}}</td>
-            <td>{{record.name}}</td>
-            <td>{{record.creationDate | date: 'short'}}</td>
-            <td>{{record.comments}}</td>
+        <tr *ngFor="let record of (records)">
+            <td>{{record['idElement']}}</td>
+            <td>{{record['name']}}</td>
+            <td>{{record['creationDate'] | date: 'short'}}</td>
+            <td>{{record['comments']}}</td>
             <td (click)="selectedRecord(record)" class="selectCell">
                 Select
             </td>

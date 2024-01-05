@@ -7,6 +7,8 @@ import { RegisterComponent } from './form/form.component';
 import { TableComponent } from './table/table.component';
 import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { InfoService } from './service/info.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
       
@@ -15,11 +17,12 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
         RouterOutlet, 
         CommonModule,
         FormsModule,
-        NgbModule
+        NgbModule,
+        HttpClientModule
      ],
      declarations: [
        AppComponent, RegisterComponent, TableComponent],
-     providers: [],
+     providers: [InfoService],
      exports: [AppComponent],
      bootstrap: [AppComponent]
 })

@@ -9,7 +9,7 @@
 <div class="container">
   <div class="row align-items-center">
     <div class="col-md"></div>
-    <div class="col-md-6">
+    <div class="col-md-8">
         <ul class="nav justify-content-center">
           <li class="nav-item" (click)="selectFn(1)">
             <a class="nav-link" [ngClass]="studentButton? 'active':'disabled'">Students</a>
@@ -27,6 +27,7 @@
         <button (click)="selectFn(2)">Courses</button>
         <button (click)="selectFn(3)">Projects</button>
         -->
+      
         <div *ngIf="studentButton" >
             <register-component title='Student' (recordEmitter)="receiveStudentRecord($event)" [recordSelected]="studentRecordTmp" ></register-component>
             <br>
