@@ -7,7 +7,7 @@ export class Record{
 
     constructor(name?:String,id?:Number,comments?:String){
         this.name = name || "";
-        this.idElement = id;
+        this.id = id;
         this.comments = comments || "";
     }
     
