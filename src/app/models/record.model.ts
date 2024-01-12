@@ -1,6 +1,6 @@
 export class Record{
     name:String;
-    idElement?:Number;
+    id?:Number;
     comments:String;
     creationDate:Date = new Date();
     enable: Boolean = true;
