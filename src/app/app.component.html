@@ -1,8 +1,8 @@
 <img src = "../assets/img/angular-logo.svg" alt="Angular Logo"/>
 
-<button (click)="selectFn(1)">Students</button>
-<button (click)="selectFn(2)">Courses</button>
-<button (click)="selectFn(3)">Projects</button>
+<button mat-raised-button		 (click)="selectFn(1)">Students</button>
+<button mat-raised-button	 (click)="selectFn(2)">Courses</button>
+<button  mat-raised-button	(click)="selectFn(3)">Projects</button>
 
 <div *ngIf="studentButton">
   <register-component title='Student' (recordEmitter)="receiveStudentRecord($event)" [recordSelected]="studentRecordTmp" ></register-component>
