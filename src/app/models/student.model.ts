@@ -1,13 +1,12 @@
 export class Student{
     id?:Number;
     name:String;
-    lastName?:String;
     age?:Number;
     email?:String;
+    scholarYear?:number;
     contactNumber?:Number
     birdDate?:Date;
     creationDate:Date = new Date();
-    enable: Boolean = true;
 
     comments?:String;
 

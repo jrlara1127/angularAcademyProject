@@ -23,6 +23,23 @@ export class AppComponent {
   coursesRecords:Array<Record> = new Array<Record>();
   projectsRecords:Array<Record> = new Array<Record>();
 
+
+  studentColumns:any[] = [
+    { name:'ID',
+      column:'id'
+    },
+    { name:'Name',
+      column:'name'
+    },
+    { name:'Creation Date',
+      column:'creationDate',
+      type:'date'
+    },
+    { name:'Comments',
+      column:'comments'
+    },
+  ];
+
   title = 'excersise-one-app';
 
 
@@ -32,6 +49,7 @@ export class AppComponent {
       records.push(new Record("One",1,"NA"));
       records.push(new Record("Gabriel",2,"NA2"));
       records.push(new Record("Hellen",3,"NA3"));
+      records.push(new Record("Jorge",4,"NA4"));
       records.push(new Record("Jorge",4,"NA4"));
 
       this.studentsRecords.push(...records);
@@ -49,7 +67,7 @@ export class AppComponent {
         this.studentRecordTmp = new Record();
         break;
       case 2:
-        this.coursesButton = true;
+        this.coursesButton = true; 
         this.courseRecordTmp = new Record();
         break;
       case 3:
@@ -63,7 +81,9 @@ export class AppComponent {
 
  
   receiveStudentRecord(record: Record) { 
+    this.studentsRecords = [...this.studentsRecords];
     this.studentsRecords.push(record);
+    console.log(this.studentsRecords);
     }
   receiveCourseRecord(record: Record) {
     this.coursesRecords.push(record);
@@ -73,13 +93,13 @@ export class AppComponent {
     }
   
   studentSelectedRecord(record: Record) { 
-    this.studentRecordTmp = record; 
+    this.studentRecordTmp = {...record}; 
     }
   courseSelectedRecord(record: Record) { 
-    this.courseRecordTmp = record; 
+    this.courseRecordTmp = {...record}; 
     }
   projectSelectedRecord(record: Record) { 
-    this.projectRecordTmp = record; 
+    this.projectRecordTmp = {...record}; 
     }
 
 }
