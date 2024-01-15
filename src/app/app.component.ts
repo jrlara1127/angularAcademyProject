@@ -3,6 +3,9 @@ import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { Record } from './models/record.model';
 import { Subject } from 'rxjs';
+import { STUDENTS, STUDENT_COLUMNS, Student } from './models/student.model';
+import { COURSES, COURSE_COLUMNS, Courses } from './models/courses.model';
+import { PROJECTS, PROJECT_COLUMNS, Project } from './models/project.model';
 
 @Component({
   selector: 'app-root',
@@ -15,46 +18,27 @@ export class AppComponent {
   coursesButton:Boolean = false;
   projectsButton:Boolean = false;
 
-  studentRecordTmp!:Record;
-  courseRecordTmp!:Record;
-  projectRecordTmp!:Record;
+  studentRecordTmp!:Student;
+  courseRecordTmp!:Courses;
+  projectRecordTmp!:Project;
 
-  studentsRecords:Array<Record> = new Array<Record>();
-  coursesRecords:Array<Record> = new Array<Record>();
-  projectsRecords:Array<Record> = new Array<Record>();
+  studentsRecords:Array<Student> = STUDENTS;
+  coursesRecords:Array<Courses> = COURSES;
+  projectsRecords:Array<Project> = PROJECTS;
 
 
-  studentColumns:any[] = [
-    { name:'ID',
-      column:'id'
-    },
-    { name:'Name',
-      column:'name'
-    },
-    { name:'Creation Date',
-      column:'creationDate',
-      type:'date'
-    },
-    { name:'Comments',
-      column:'comments'
-    },
-  ];
+  studentColumns:any[] = STUDENT_COLUMNS;
+
+  courseColumns: any[] = COURSE_COLUMNS;
+
+    projectColumns: any[] = PROJECT_COLUMNS;
 
   title = 'excersise-one-app';
 
 
   constructor() {
-    
-    let records:Array<Record> = new Array<Record>();
-      records.push(new Record("One",1,"NA"));
-      records.push(new Record("Gabriel",2,"NA2"));
-      records.push(new Record("Hellen",3,"NA3"));
-      records.push(new Record("Jorge",4,"NA4"));
-      records.push(new Record("Jorge",4,"NA4"));
-
-      this.studentsRecords.push(...records);
-      this.coursesRecords.push(...records);
-      this.projectsRecords.push(...records);
+      //this.coursesRecords.push(...records as COR);
+      //this.projectsRecords.push(...records);
   }
   selectFn(button:Number){
     this.studentButton = false;
@@ -64,15 +48,15 @@ export class AppComponent {
     switch(button){
       case 1:
         this.studentButton = true;
-        this.studentRecordTmp = new Record();
+        this.studentRecordTmp = {} as Student;
         break;
       case 2:
         this.coursesButton = true; 
-        this.courseRecordTmp = new Record();
+        this.courseRecordTmp = new Courses();
         break;
       case 3:
         this.projectsButton = true;
-        this.projectRecordTmp = new Record();
+        this.projectRecordTmp = new Project();
         break;
     }
 
@@ -80,25 +64,44 @@ export class AppComponent {
 
 
  
-  receiveStudentRecord(record: Record) { 
-    this.studentsRecords = [...this.studentsRecords];
-    this.studentsRecords.push(record);
-    console.log(this.studentsRecords);
+  receiveStudentRecord(record: Student) { 
+    console.log('sdsdsd',record);
+    console.log('sdsdsd',record.id);
+    if (record.id){
+      const index =  this.studentsRecords.findIndex((student) => {
+           return student.id === record.id;
+        });
+      
+      this.studentsRecords[index] = record;
+
+    } else{
+      console.log('sdsdsd2',record); 
+      const maxIdStudent:Student = this.studentsRecords.reduce((maxStudent,currentStudent)=>{
+                                    return currentStudent.id && maxStudent.id && currentStudent.id > maxStudent.id ? currentStudent: maxStudent
+                                },this.studentsRecords[0]); 
+      record.id = (maxIdStudent.id || 0)+1;
+      this.studentsRecords.push(record);
     }
-  receiveCourseRecord(record: Record) {
+
+    
+    this.studentsRecords = [...this.studentsRecords];
+
+    }
+  receiveCourseRecord(record: Courses) {
     this.coursesRecords.push(record);
     }
-  receiveProjectRecord(record: Record) {
+  receiveProjectRecord(record: Project) {
     this.projectsRecords.push(record);
     }
   
-  studentSelectedRecord(record: Record) { 
-    this.studentRecordTmp = {...record}; 
+  studentSelectedRecord(record: any) { 
+    this.studentRecordTmp = {...record as Student}; 
+    console.log('StudentSelected',this.studentRecordTmp);
     }
-  courseSelectedRecord(record: Record) { 
+  courseSelectedRecord(record: Courses) { 
     this.courseRecordTmp = {...record}; 
     }
-  projectSelectedRecord(record: Record) { 
+  projectSelectedRecord(record: Project) { 
     this.projectRecordTmp = {...record}; 
     }
 

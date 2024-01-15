@@ -1,4 +1,13 @@
 table {
     width: 100%;
   }
-  
+
+.filter {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+}
+.inputfilter{
+  width: 40%;
+  height: 60px;
+}

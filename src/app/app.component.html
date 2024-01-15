@@ -12,21 +12,20 @@
     <mat-tab-group>
       <mat-tab label="Students"> 
         <div class="formsCenter">
-          <app-student-form></app-student-form>
-          <register-component title='Student' (recordEmitter)="receiveStudentRecord($event)" [recordSelected]="studentRecordTmp" ></register-component>
+          <app-student-form (studentEmitter)="receiveStudentRecord($event)" [recordSelected]="studentRecordTmp"></app-student-form>
           <table-component title='Students' [grid-colums]="studentColumns" [records]="studentsRecords" (recordEmitter)="studentSelectedRecord($event)" ></table-component>
         </div>    
       </mat-tab>
       <mat-tab label="Courses">
         <div class="formsCenter">
-          <register-component title='Course' (recordEmitter)="receiveCourseRecord($event)" [recordSelected]="courseRecordTmp" ></register-component>
-          <table-component title='Courses' [grid-colums]="studentColumns" [records]="coursesRecords"(recordEmitter)="courseSelectedRecord($event)" ></table-component>
+          <!--<register-component title='Course' (recordEmitter)="receiveCourseRecord($event)" [recordSelected]="courseRecordTmp" ></register-component>-->
+          <table-component title='Courses' [grid-colums]="courseColumns" [records]="coursesRecords"(recordEmitter)="courseSelectedRecord($event)" ></table-component>
         </div>
       </mat-tab>
       <mat-tab label="Projects">
         <div class="formsCenter">
-          <register-component title='Project' (recordEmitter)="receiveProjectRecord($event)" [recordSelected]="projectRecordTmp" ></register-component>
-          <table-component title='Projects' [grid-colums]="studentColumns" [records]="projectsRecords"(recordEmitter)="projectSelectedRecord($event)" ></table-component>
+          <!--<register-component title='Project' (recordEmitter)="receiveProjectRecord($event)" [recordSelected]="projectRecordTmp" ></register-component>-->
+          <table-component title='Projects' [grid-colums]="projectColumns" [records]="projectsRecords"(recordEmitter)="projectSelectedRecord($event)" ></table-component>
         </div>
       </mat-tab>
     </mat-tab-group>
