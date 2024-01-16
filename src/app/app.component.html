@@ -24,7 +24,7 @@
       </mat-tab>
       <mat-tab label="Projects">
         <div class="formsCenter">
-          <!--<register-component title='Project' (recordEmitter)="receiveProjectRecord($event)" [recordSelected]="projectRecordTmp" ></register-component>-->
+          <app-project-form (projectEmitter)="receiveProjectRecord($event)" [recordSelected]="projectRecordTmp" ></app-project-form> 
           <table-component title='Projects' [grid-colums]="projectColumns" [records]="projectsRecords"(recordEmitter)="projectSelectedRecord($event)" ></table-component>
         </div>
       </mat-tab>

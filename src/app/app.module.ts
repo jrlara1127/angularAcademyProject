@@ -27,7 +27,8 @@ import { ProjectFormComponent } from './form/project-form/project-form.component
        RegisterComponent, 
        TableComponent,
         StudentFormComponent,
-        CourseFormComponent
+        CourseFormComponent,
+        ProjectFormComponent
     ],
      providers: [],
      exports: [AppComponent],

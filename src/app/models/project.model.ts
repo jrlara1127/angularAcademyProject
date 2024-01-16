@@ -1,10 +1,10 @@
-export class Project {
-    id?: number;
-    name?: String;
-    description?:String;
-    startDate?: Date;
-    endDate?: Date;
-    numStudents?:number;
+export interface Project {
+    id: number;
+    name: string;
+    description:string;
+    startDate: Date;
+    endDate: Date;
+    numStudents:number;
 }
 
 export const PROJECT_COLUMNS: any[] = [
@@ -15,7 +15,8 @@ export const PROJECT_COLUMNS: any[] = [
     column:'name'
   },
   { name:'Description',
-    column:'description'
+    column:'description',
+    type:'longDescription'
   },
   { name:'Start date',
     column:'startDate',

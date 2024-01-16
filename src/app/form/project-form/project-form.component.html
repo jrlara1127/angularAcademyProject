@@ -1,1 +1,49 @@
-<p>project-form works!</p>
+<mat-card class="form-container">
+    <mat-card-title class = "cardTitle">Register a new {{title}}</mat-card-title>
+    <mat-card-content>
+        <form [formGroup]="form" class="login-form  grid-container">
+            <mat-form-field class="doubleSpan">
+              <input matInput  name="name" placeholder="Name" formControlName="name">
+              <mat-error *ngIf="name.errors != null && name.errors['pattern']" >Only letters are allowed.</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="doubleSpan" >
+                <textarea matInput placeholder="Description" formControlName="description" #description></textarea>
+                <mat-hint align="start">  Description must be between 30 and 300 characerts long. </mat-hint>
+                <mat-hint align="end">  {{ description.value.length }} / 60 </mat-hint>
+            </mat-form-field> 
+
+            <mat-form-field >
+              <input matInput  name="instructor" placeholder="Instructor" formControlName="instructor">
+              <mat-error *ngIf="name.errors != null && name.errors['pattern']" >Only letters are allowed.</mat-error>
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput type="number" name="numStudents" placeholder="Students" formControlName="numStudents">
+            </mat-form-field>
+
+            <mat-form-field>        
+                <mat-label>Period</mat-label>        
+                <mat-date-range-input [rangePicker]="promoPicker">
+                    <input matStartDate placeholder="Start date" formControlName="startDate">        
+                    <input matEndDate placeholder="End date" formControlName="endDate">        
+                </mat-date-range-input>
+                <mat-datepicker-toggle matSuffix [for]="promoPicker"></mat-datepicker-toggle>        
+                <mat-date-range-picker #promoPicker></mat-date-range-picker>
+        
+            </mat-form-field>
+            
+      
+            <div class="buttonsClass">
+                <button mat-raised-button color="primary" type="submit" (click)="submitForm()"
+                        [disabled]="!form.valid || flgUpdate">
+                  Save
+                </button>
+                <button mat-raised-button   (click)="reset()"> Clear </button>
+                <button mat-raised-button  [disabled]="!flgUpdate" (click)="Update()"> Update </button>
+            </div>
+        
+        </form>
+
+    </mat-card-content>
+
+</mat-card>

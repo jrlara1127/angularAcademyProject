@@ -65,8 +65,8 @@ export class AppComponent {
   receiveCourseRecord(record: Courses) {
     //update
     if (record.id){
-      const index =  this.coursesRecords.findIndex((student) => {
-          return student.id === record.id;
+      const index =  this.coursesRecords.findIndex((course) => {
+          return course.id === record.id;
         });
       
       this.coursesRecords[index] = record;
@@ -80,8 +80,24 @@ export class AppComponent {
     }
     this.coursesRecords = [...this.coursesRecords];
     }
+
   receiveProjectRecord(record: Project) {
-    this.projectsRecords.push(record);
+    //update
+    if (record.id){
+      const index =  this.projectsRecords.findIndex((project) => {
+          return project.id === record.id;
+        });
+      
+      this.projectsRecords[index] = record;
+
+    } else{  //save
+      const maxId:Project = this.projectsRecords.reduce((max,current)=>{
+                                    return current.id && max.id && current.id > max.id ? current: max
+                                },this.projectsRecords[0]); 
+      record.id = (maxId.id || 0)+1;
+      this.projectsRecords.push(record);
+    }
+    this.projectsRecords = [...this.projectsRecords];
     }
   
   studentSelectedRecord(record: Student) { 
@@ -92,7 +108,8 @@ export class AppComponent {
     console.log('RecordSelected',this.studentRecordTmp);
     }
   projectSelectedRecord(record: Project) { 
-    this.projectRecordTmp = {...record}; 
+    this.projectRecordTmp = {...record as Project}; 
+    console.log('ProjectSelected',this.projectRecordTmp);
     }
 
 }

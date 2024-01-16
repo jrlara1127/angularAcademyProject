@@ -1,0 +1,28 @@
+.form-container{
+    padding: 15px;
+    margin: 15px;
+    width: 100%;
+}
+
+.cardTitle{
+    margin: 15px;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+  }
+
+.grid-container{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    column-gap: 15px;
+    width: 95%;
+}
+
+.buttonsClass, .doubleSpan{
+    grid-column: span 2;
+    display: flex;
+    column-gap: 30px;
+    justify-content: center;
+}
