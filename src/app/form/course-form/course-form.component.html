@@ -27,8 +27,8 @@
                         [disabled]="!form.valid || flgUpdate">
                   Save
                 </button>
-                <button mat-raised-button   (click)="reset()"> Clear </button>
-                <button mat-raised-button  [disabled]="!flgUpdate" (click)="Update()"> Update </button>
+                <button mat-raised-button  type="submit" [disabled]="!flgUpdate" (click)="Update()"> Update </button>
+                <button mat-raised-button   type="submit" (click)="reset()"> Clean </button>
             </div>
         </form>
     </mat-card-content>

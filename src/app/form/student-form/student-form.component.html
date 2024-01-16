@@ -3,32 +3,37 @@
     <mat-card-content>
       <form [formGroup]="form" class="login-form  grid-container">
         <mat-form-field>
-          <input matInput  name="name" placeholder="Name" formControlName="name">
+          <mat-label>Name</mat-label>
+          <input matInput  name="name" formControlName="name">
           <mat-error *ngIf="name.errors != null && name.errors['pattern']" >Only letters are allowed.</mat-error>
         </mat-form-field>
         <mat-form-field>
-          <input matInput type="number" name="age" placeholder="Age" formControlName="age">
+          <mat-label>Age</mat-label>
+          <input matInput type="number" name="age" formControlName="age">
         </mat-form-field>
         <mat-form-field>
-          <input matInput type="email" name="email" placeholder="Email" formControlName="email">
+          <mat-label>Email</mat-label>
+          <input matInput type="email" name="email"  formControlName="email">
           <mat-error *ngIf="email.errors != null  && email.errors['required']">The email is mandatory.</mat-error>
           <mat-error *ngIf="email.errors != null && email.errors['email']">This is not a valid email.</mat-error>
         </mat-form-field>
         <mat-form-field>
-          <input matInput  name="contactNumber" placeholder="Contact Number" formControlName="contactNumber">
+          <mat-label>Contact Number</mat-label>
+          <input matInput  name="contactNumber" formControlName="contactNumber">
         </mat-form-field>
         <mat-form-field>
-            <mat-select placeholder="Select Scholar Year" formControlName="scholarYear">
+          <mat-label>Select Scholar Year</mat-label>
+            <mat-select formControlName="scholarYear">
                 <ng-container *ngFor="let year of scholarYearCatalog">
                     <mat-option [value]="year.code">{{year.description}}</mat-option>
                 </ng-container>
             </mat-select>
         </mat-form-field>    
         <mat-form-field>
+            <mat-label>Bird Date</mat-label>
             <input matInput [matDatepicker]="releaseDatePicker"
                 [min]="minDate" [max]="maxDate" 
-                formControlName="birdDate"
-                placeholder="Bird Date">
+                formControlName="birdDate" >
             <mat-datepicker-toggle matSuffix
                     [for]="releaseDatePicker"></mat-datepicker-toggle>
             <mat-datepicker #releaseDatePicker></mat-datepicker>
@@ -41,8 +46,8 @@
                     [disabled]="!form.valid || flgUpdate">
               Save
             </button>
-            <button mat-raised-button   (click)="reset()"> Clear </button>
-            <button mat-raised-button  [disabled]="!flgUpdate" (click)="Update()"> Update </button>
+            <button mat-raised-button  type="submit" [disabled]="!flgUpdate" (click)="Update()"> Update </button>
+            <button mat-raised-button   type="submit" (click)="reset()"> Clean </button>
         </div>
   
       
