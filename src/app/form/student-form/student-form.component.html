@@ -1,10 +1,10 @@
 <mat-card class="form-container"> 
-    <mat-card-title>Register a new {{title}}</mat-card-title>
+    <mat-card-title class = "cardTitle">Register a new {{title}}</mat-card-title>
     <mat-card-content>
       <form [formGroup]="form" class="login-form  grid-container">
         <mat-form-field>
           <input matInput  name="name" placeholder="Name" formControlName="name">
-          <mat-error *ngIf="name.errors != null && name.errors['pattern']">Only letters are allowed.</mat-error>
+          <mat-error *ngIf="name.errors != null && name.errors['pattern']" >Only letters are allowed.</mat-error>
         </mat-form-field>
         <mat-form-field>
           <input matInput type="number" name="age" placeholder="Age" formControlName="age">

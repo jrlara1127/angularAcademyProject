@@ -10,9 +10,6 @@ import { ScholarYear } from '../../models/catalogs/scholarYear';
 })
 export class StudentFormComponent {
 
-   @ViewChild(FormGroupDirective)
-   formChildDirective!: FormGroupDirective;
-
   studentTmp!: Student;
   @Output()
   studentEmitter = new EventEmitter<Student>();
