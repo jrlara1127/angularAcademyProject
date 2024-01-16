@@ -39,67 +39,57 @@ export class AppComponent {
   constructor() {
       //this.coursesRecords.push(...records as COR);
       //this.projectsRecords.push(...records);
-  }
-  selectFn(button:Number){
-    this.studentButton = false;
-    this.coursesButton = false;
-    this.projectsButton = false;
-    
-    switch(button){
-      case 1:
-        this.studentButton = true;
-        this.studentRecordTmp = {} as Student;
-        break;
-      case 2:
-        this.coursesButton = true; 
-        this.courseRecordTmp = new Courses();
-        break;
-      case 3:
-        this.projectsButton = true;
-        this.projectRecordTmp = new Project();
-        break;
-    }
-
-  }
-
+  } 
 
  
   receiveStudentRecord(record: Student) { 
-    console.log('sdsdsd',record);
-    console.log('sdsdsd',record.id);
+        //update
+        if (record.id){
+          const index =  this.studentsRecords.findIndex((student) => {
+              return student.id === record.id;
+            });
+          
+          this.studentsRecords[index] = record;
+
+        } else{ //save
+          const maxIdStudent:Student = this.studentsRecords.reduce((maxStudent,currentStudent)=>{
+                                        return currentStudent.id && maxStudent.id && currentStudent.id > maxStudent.id ? currentStudent: maxStudent
+                                    },this.studentsRecords[0]); 
+          record.id = (maxIdStudent.id || 0)+1;
+          this.studentsRecords.push(record);
+        }
+        this.studentsRecords = [...this.studentsRecords];
+    }
+
+
+  receiveCourseRecord(record: Courses) {
+    //update
     if (record.id){
-      const index =  this.studentsRecords.findIndex((student) => {
-           return student.id === record.id;
+      const index =  this.coursesRecords.findIndex((student) => {
+          return student.id === record.id;
         });
       
-      this.studentsRecords[index] = record;
+      this.coursesRecords[index] = record;
 
-    } else{
-      console.log('sdsdsd2',record); 
-      const maxIdStudent:Student = this.studentsRecords.reduce((maxStudent,currentStudent)=>{
-                                    return currentStudent.id && maxStudent.id && currentStudent.id > maxStudent.id ? currentStudent: maxStudent
-                                },this.studentsRecords[0]); 
-      record.id = (maxIdStudent.id || 0)+1;
-      this.studentsRecords.push(record);
+    } else{  //save
+      const maxId:Courses = this.coursesRecords.reduce((max,current)=>{
+                                    return current.id && max.id && current.id > max.id ? current: max
+                                },this.coursesRecords[0]); 
+      record.id = (maxId.id || 0)+1;
+      this.coursesRecords.push(record);
     }
-
-    
-    this.studentsRecords = [...this.studentsRecords];
-
-    }
-  receiveCourseRecord(record: Courses) {
-    this.coursesRecords.push(record);
+    this.coursesRecords = [...this.coursesRecords];
     }
   receiveProjectRecord(record: Project) {
     this.projectsRecords.push(record);
     }
   
-  studentSelectedRecord(record: any) { 
+  studentSelectedRecord(record: Student) { 
     this.studentRecordTmp = {...record as Student}; 
-    console.log('StudentSelected',this.studentRecordTmp);
     }
   courseSelectedRecord(record: Courses) { 
-    this.courseRecordTmp = {...record}; 
+    this.courseRecordTmp = {...record as Courses}; 
+    console.log('RecordSelected',this.studentRecordTmp);
     }
   projectSelectedRecord(record: Project) { 
     this.projectRecordTmp = {...record}; 

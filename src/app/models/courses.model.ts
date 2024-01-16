@@ -1,12 +1,10 @@
-export class Courses {
-    id?: number;
-    name?: String;
-    instructor?: string;
-    hours?: number;
-    creditHours?: number;
-    numStudents?: number;
-
-    constructor() { }
+export interface Courses {
+    id: number;
+    name: string;
+    instructor: string;
+    hours: number;
+    creditHours: number;
+    numStudents: number;
 }
 
 export const COURSE_COLUMNS: any[] = [
@@ -38,6 +36,6 @@ export const COURSES: Array<Courses> = [
     { id: 5, name: "History of World Civilizations", instructor: "Professor Brown", hours: 50, creditHours: 5, numStudents: 30 },
     { id: 6, name: "Chemistry Fundamentals", instructor: "Dr. Martinez", hours: 35, creditHours: 3, numStudents: 15 },
     { id: 7, name: "Physical Education", instructor: "Coach Garcia", hours: 20, creditHours: 2, numStudents: 15 },
-    { id: 8, name: "Spanish Language", instructor: "Señorita Miller", hours: 40, creditHours: 4, numStudents: 20 },
+    { id: 8, name: "Spanish Language", instructor: "Señorita Miller", hours: 40, creditHours: 4, numStudents: 20 }
 ];
 

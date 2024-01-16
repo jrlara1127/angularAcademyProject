@@ -18,7 +18,7 @@
       </mat-tab>
       <mat-tab label="Courses">
         <div class="formsCenter">
-          <!--<register-component title='Course' (recordEmitter)="receiveCourseRecord($event)" [recordSelected]="courseRecordTmp" ></register-component>-->
+          <app-course-form  (courseEmitter)="receiveCourseRecord($event)" [recordSelected]="courseRecordTmp" ></app-course-form>
           <table-component title='Courses' [grid-colums]="courseColumns" [records]="coursesRecords"(recordEmitter)="courseSelectedRecord($event)" ></table-component>
         </div>
       </mat-tab>
