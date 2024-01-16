@@ -17,13 +17,11 @@ export class StudentFormComponent {
   @Output()
   studentEmitter = new EventEmitter<Student>();
   
-  @Input()
   @Input("recordSelected")
   set setRecords(_object:Student){
         this.studentTmp = _object; 
         this.form.patchValue(this.studentTmp);
 
-        console.log('StudentRecieved',this.studentTmp);
         if (typeof  this.studentTmp?.id !== 'undefined') {
           this.flgUpdate = true;
         }
@@ -98,7 +96,6 @@ reset() {
   this.form.reset(this.INITIAL_VALUES);
   this.form.markAsPristine();
   this.form.markAsTouched();
-  console.log(this.form.value);
   this.flgUpdate =false;
   this.studentTmp = {} as Student;
 
