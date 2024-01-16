@@ -11,3 +11,12 @@ table {
   width: 40%;
   height: 60px;
 }
+
+.buttonText:hover {
+  color: darkcyan;
+  font-weight: bold;
+}
+
+.buttonText:active{
+  color: blue;
+}

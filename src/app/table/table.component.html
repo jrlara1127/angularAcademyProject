@@ -18,23 +18,30 @@
                 <mat-cell  *matCellDef="let record"> {{record[column['column']]}} </mat-cell>
             </ng-container>
         } 
-        @else { 
+        @else if (column['type'] == 'date'){ 
             <!-- Date Column -->
             <ng-container matColumnDef="{{column['column']}}">
                 <mat-header-cell mat-header-cell *matHeaderCellDef mat-sort-header> {{column['name'] }} </mat-header-cell>
-                <mat-cell *matCellDef="let record"> {{record[column['column']] | date:'shortDate'}} </mat-cell>
+                <mat-cell *matCellDef="let record"> {{record[column['column']] | date:'shortDate'}}</mat-cell>
+            </ng-container>
+        }
+        @else if (column['type'] == 'longDescription'){ 
+            <!-- Date Column -->
+            <ng-container matColumnDef="{{column['column']}}">
+                <mat-header-cell mat-header-cell *matHeaderCellDef mat-sort-header> {{column['name'] }} </mat-header-cell>
+                <mat-cell *matCellDef="let record"> {{record[column['column']]  | slice:0:30 }}...  </mat-cell>
             </ng-container>
         }
     }
 
         <ng-container matColumnDef="selection">
-            <mat-header-cell  *matHeaderCellDef > Selection</mat-header-cell>
+            <mat-header-cell  *matHeaderCellDef >  </mat-header-cell>
             <mat-cell *matCellDef="let record"> 
-                <button mat-button (click)="selectedRecord(record)">select</button>
+                <button mat-button (click)="selectedRecord(record)" >
+                    <span class="buttonText">select</span>
+                </button>
             </mat-cell>
-        </ng-container>
-        
-
+        </ng-container> 
         
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
