@@ -1,11 +1,26 @@
 # ExcersiseOneApp
-The project contains a registration system to add new students, courses or projects to the page. Each kind or register have its own tab to register new entities or see the entities registered before.
+The project contains a registration system to add new students, courses or projects to each tab. 
 
-*This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.7.*
+Each kind of element has its tab to add new entities or see the entities registered before, select it and update its information. Furthermore, each form has its own clean button to erase the information written previously. 
 
-## Development server
+*This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.7.* and using [Angular Material](https://v5.material.angular.io/) to style it.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+
+<img title="a title" alt="Alt text" src="src/assets/img/mainApp.JPG" >
+
+# How to install and run this repository
+
+We can install the *excercise2* branch using the following commands:
+
+    git clone https://github.com/jrlara1127/angularAcademyProject.git
+    cd angularAcademyProject
+    git checkout excercise2
+    git pull origin excercise2
+    npm install
+
+To run the project it will only be necessary to run the following command.
+
+    npm start
 
 ## Code scaffolding
 
