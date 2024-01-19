@@ -24,6 +24,7 @@ export class ProjectFormComponent {
           this.form.controls['name'].setValue(this.projectTmp.name);
           this.form.controls['description'].setValue(this.projectTmp.description);
           this.form.controls['numStudents'].setValue(this.projectTmp.numStudents);
+          this.form.controls['instructor'].setValue(this.projectTmp.instructor);
 
           this.flgUpdate = true;
         }

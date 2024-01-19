@@ -2,6 +2,7 @@ export interface Project {
     id: number;
     name: string;
     description:string;
+    instructor:string;
     startDate: Date;
     endDate: Date;
     numStudents:number;
@@ -18,6 +19,9 @@ export const PROJECT_COLUMNS: any[] = [
     column:'description',
     type:'longDescription'
   },
+  { name:'Instructor',
+    column:'instructor'
+  },
   { name:'Start date',
     column:'startDate',
     type:'date'
@@ -32,7 +36,7 @@ export const PROJECT_COLUMNS: any[] = [
 ];
 
 
-
+/*
 export const PROJECTS: Array<Project> = [
     {
       id: 1,
@@ -99,4 +103,6 @@ export const PROJECTS: Array<Project> = [
       numStudents: 6,
     },
   ];
+
+  */
   
