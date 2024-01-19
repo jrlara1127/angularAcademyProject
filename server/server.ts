@@ -1,11 +1,6 @@
 
 import * as express from 'express';
-import {Application} from "express";
-import {getAllCourses, getCourseByUrl} from "./get-courses.route";
-import {searchLessons} from "./search-lessons.route";
-import {saveCourse} from './save-course.route';
-import {loginUser} from './login.route';
-import {findLessonDetail} from "./get-lesson-detail.route";  
+import {Application} from "express"; 
 
 import { getAllStudents, getStudentById, saveStudent, updateStudent } from './services/students.route';
 import { getAllCoursesv2, getCourseV2ById, saveCourses, updateCourse } from './services/courses.route';
@@ -22,17 +17,6 @@ app.use(cors({origin: true}));
 
 app.use(bodyParser.json());
 
-app.route('/api/v2/courses').get(getAllCourses);
-
-app.route('/api/v2/courses/:id').get(getCourseByUrl);
-
-app.route('/api/lessons').get(searchLessons);
-
-app.route('/api/v2/courses/:id').put(saveCourse);
-
-app.route('/api/login').post(loginUser);
-
-app.route('/api/lesson-details').get(findLessonDetail);
 
 // Students
 app.route('/api/students').get(getAllStudents);

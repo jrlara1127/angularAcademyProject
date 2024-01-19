@@ -16,7 +16,6 @@ export function getAllStudentsByCourse(req: Request, res: Response) {
         students.forEach((element)=>{
             if(element['idCourse'] == id){
                 let student = STUDENTS.find(student => student['id'] == element['idStudent']);
-                console.log(student);
                 studentsLst.push(student);
             }
         });
@@ -45,7 +44,6 @@ export function getAllStudentsByProject(req: Request, res: Response) {
         students.forEach((element)=>{
             if(element['idProject'] == id){
                 let student = STUDENTS.find(student => student['id'] == element['idStudent']);
-                console.log(student);
                 studentsLst.push(student);
             }
         });
@@ -71,7 +69,6 @@ export function saveCourseStudent(req: Request, res: Response) {
     const changes = req.body;
     var newStudent = {...changes};
    
-    console.log("Saving student changes", newStudent);
     var response:Boolean = saveCourseStudentlst(newStudent);
 
     setTimeout(() => {     
@@ -89,7 +86,6 @@ export function saveProjectStudent(req: Request, res: Response) {
     const changes = req.body;
     var newStudent = {...changes};
    
-    console.log("Saving student changes", newStudent);
     var response:Boolean = saveProjectStudentlst(newStudent);
 
     setTimeout(() => {     

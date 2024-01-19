@@ -17,7 +17,7 @@ export function getStudentById(req: Request, res: Response) {
     let student:any;
 
     try {
-        student = students.find(student => student.id == id);
+        student = students.find((student:any) => student.id == id);
     }catch{
         student = null;
     }
@@ -42,7 +42,7 @@ export function saveStudent(req: Request, res: Response) {
                   },STUDENTS[0]);
     
     newStudent['id'] = maxIdStudent['id']+1;    
-    console.log("Saving student changes", newStudent);
+    
     var response:Boolean = saveStudentlst(newStudent);
 
     setTimeout(() => {     

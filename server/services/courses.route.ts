@@ -16,7 +16,7 @@ export function getCourseV2ById(req: Request, res: Response) {
     let course:any;
 
     try {
-        course = courses.find(student => student.id == id);
+        course = courses.find((student:any) => student.id == id);
     }catch{
         course = null;
     }
@@ -41,7 +41,7 @@ export function saveCourses(req: Request, res: Response) {
                   },COURSES[0]);
     
     newCourse['id'] = maxId['id']+1;    
-    console.log("Saving student changes", newCourse);
+
     var response:Boolean = saveProjectlst(newCourse);
 
     setTimeout(() => {     
