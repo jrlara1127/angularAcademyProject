@@ -11,6 +11,8 @@ import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { StudentFormComponent } from './form/student-form/student-form.component';
 import { CourseFormComponent } from './form/course-form/course-form.component';
 import { ProjectFormComponent } from './form/project-form/project-form.component';
+import { InfoService } from './service/info.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
     imports: [
@@ -20,7 +22,8 @@ import { ProjectFormComponent } from './form/project-form/project-form.component
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
-        MaterialModule
+        MaterialModule,
+        HttpClientModule
      ],
      declarations: [
        AppComponent, 
@@ -30,7 +33,7 @@ import { ProjectFormComponent } from './form/project-form/project-form.component
         CourseFormComponent,
         ProjectFormComponent
     ],
-     providers: [],
+     providers: [InfoService],
      exports: [AppComponent],
      bootstrap: [AppComponent]
 })

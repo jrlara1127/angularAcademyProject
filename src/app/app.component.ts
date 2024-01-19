@@ -1,18 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { Record } from './models/record.model';
 import { Subject } from 'rxjs';
-import { STUDENTS, STUDENT_COLUMNS, Student } from './models/student.model';
-import { COURSES, COURSE_COLUMNS, Courses } from './models/courses.model';
-import { PROJECTS, PROJECT_COLUMNS, Project } from './models/project.model';
+import { STUDENT_COLUMNS, Student } from './models/student.model';
+import {  COURSE_COLUMNS, Courses } from './models/courses.model';
+import { PROJECT_COLUMNS, Project } from './models/project.model';
+import { InfoService } from './service/info.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   
   studentButton:Boolean = true;
   coursesButton:Boolean = false;
@@ -22,9 +23,9 @@ export class AppComponent {
   courseRecordTmp!:Courses;
   projectRecordTmp!:Project;
 
-  studentsRecords:Array<Student> = STUDENTS;
-  coursesRecords:Array<Courses> = COURSES;
-  projectsRecords:Array<Project> = PROJECTS;
+  studentsRecords!:Array<Student>; 
+  coursesRecords!:Array<Courses> ;
+  projectsRecords!:Array<Project>;
 
 
   studentColumns:any[] = STUDENT_COLUMNS;
@@ -36,10 +37,24 @@ export class AppComponent {
   title = 'excersise-one-app';
 
 
-  constructor() {
-      //this.coursesRecords.push(...records as COR);
-      //this.projectsRecords.push(...records);
+  constructor(private infoService: InfoService) {
+
+      this.infoService.loadStudent().subscribe(
+        students => {this.studentsRecords = students as Array<Student>;}
+      );
+      
+      this.infoService.loadCourses().subscribe(
+        courses => {this.coursesRecords = courses as Array<Courses>;}
+      );
+      
+      this.infoService.loadProjects().subscribe(
+        project => {this.projectsRecords = project as Array<Project>;}
+      );
   } 
+
+  ngOnInit() {
+    
+  }
 
  
   receiveStudentRecord(record: Student) { 
