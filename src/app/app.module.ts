@@ -13,6 +13,7 @@ import { CourseFormComponent } from './form/course-form/course-form.component';
 import { ProjectFormComponent } from './form/project-form/project-form.component';
 import { InfoService } from './service/info.service';
 import { HttpClientModule } from '@angular/common/http';
+import { AlertMessageComponent } from './utils/alert-message/alert-message.component';
 
 @NgModule({
     imports: [
@@ -31,7 +32,8 @@ import { HttpClientModule } from '@angular/common/http';
        TableComponent,
         StudentFormComponent,
         CourseFormComponent,
-        ProjectFormComponent
+        ProjectFormComponent,
+        AlertMessageComponent
     ],
      providers: [InfoService],
      exports: [AppComponent],

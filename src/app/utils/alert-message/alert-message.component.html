@@ -1,0 +1,16 @@
+<div style="display: flex; align-items: center;">
+    <div >
+        @if (data.success) { 
+        <mat-icon class="success">check_circle</mat-icon>&nbsp;&nbsp;
+        } @else{ 
+            <mat-icon class="error">error</mat-icon>&nbsp;&nbsp;
+        }
+    </div>
+    <div >
+        <span class="primaryText">{{data.message}}</span>  &nbsp;
+        <span class="secondaryText" >{{data.detailMessage}} lore</span>
+    </div>
+    <span matSnackBarActions>
+        <button mat-button matSnackBarAction (click)="snackBarRef.dismissWithAction()"><mat-icon>close</mat-icon></button>
+    </span>
+</div>

@@ -1,0 +1,18 @@
+.primaryText {
+    font-weight: bold;
+    line-height: 30px;
+    font-size: 16px;
+}
+
+.secondaryText {
+    font-weight: 400;
+    font-size: 16px;
+}
+
+.success{
+    color: green ;
+}
+
+.error {
+    color:brown;
+}
