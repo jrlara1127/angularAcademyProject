@@ -1,7 +1,7 @@
 
 
 import {Request, Response} from 'express';
-import { COURSES, PROJECTS, STUDENTS, saveProjectlst, updateCourseLst } from '../db/db-data-class';
+import { COURSES, PROJECTS, STUDENTS, saveCourselst, saveProjectlst, updateCourseLst } from '../db/db-data-class';
  
 
 export function getAllCoursesv2(req: Request, res: Response) {
@@ -42,7 +42,7 @@ export function saveCourses(req: Request, res: Response) {
     
     newCourse['id'] = maxId['id']+1;    
 
-    var response:Boolean = saveProjectlst(newCourse);
+    var response:Boolean = saveCourselst(newCourse);
 
     setTimeout(() => {     
         if (response){
