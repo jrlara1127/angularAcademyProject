@@ -12,20 +12,17 @@
     <mat-tab-group>
       <mat-tab label="Students"> 
         <div class="formsCenter">
-          <app-student-form (studentEmitter)="receiveStudentRecord($event)" [recordSelected]="studentRecordTmp"></app-student-form>
-          <table-component title='Students' [grid-colums]="studentColumns" [records]="studentsRecords" (recordEmitter)="studentSelectedRecord($event)" ></table-component>
+          <app-student-form></app-student-form>
         </div>    
       </mat-tab>
       <mat-tab label="Courses">
         <div class="formsCenter">
-          <app-course-form  (courseEmitter)="receiveCourseRecord($event)" [recordSelected]="courseRecordTmp" ></app-course-form>
-          <table-component title='Courses' [grid-colums]="courseColumns" [records]="coursesRecords"(recordEmitter)="courseSelectedRecord($event)" ></table-component>
+          <app-course-form></app-course-form>
         </div>
       </mat-tab>
       <mat-tab label="Projects">
         <div class="formsCenter">
-          <app-project-form (projectEmitter)="receiveProjectRecord($event)" [recordSelected]="projectRecordTmp" ></app-project-form> 
-          <table-component title='Projects' [grid-colums]="projectColumns" [records]="projectsRecords"(recordEmitter)="projectSelectedRecord($event)" ></table-component>
+          <app-project-form></app-project-form> 
         </div>
       </mat-tab>
     </mat-tab-group>

@@ -1,42 +1,36 @@
-import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, Output, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroupDirective, Validators } from '@angular/forms';
-import { Student } from '../../models/student.model';
-import { ScholarYear } from '../../models/catalogs/scholarYear';
+import { STUDENT_COLUMNS, Student } from '../../models/student.model';
+import { SCHOOL_YEAR_CATALOG, ScholarYear } from '../../models/catalogs/scholarYear';
+import { Subscription } from 'rxjs';
+import { InfoService } from '../../service/info.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { AlertMessageComponent } from '../../utils/alert-message/alert-message.component';
+import { ResultMessage } from '../../models/catalogs/messages';
 
 @Component({
   selector: 'app-student-form',
   templateUrl: './student-form.component.html',
   styleUrl: './student-form.component.css'
 })
-export class StudentFormComponent {
+export class StudentFormComponent implements OnDestroy {
 
-  studentTmp!: Student;
-  @Output()
-  studentEmitter = new EventEmitter<Student>();
+  private studentsSubs$!: Subscription;
+  private studentSubs$!: Subscription;
+
+  studentsRecords!:Array<Student>; 
+  studentTmp!:Student;
+
+  title:string = 'Students'; 
   
-  @Input("recordSelected")
-  set setRecords(_object:Student){
-        this.studentTmp = _object; 
-        this.form.patchValue(this.studentTmp);
-
-        if (typeof  this.studentTmp?.id !== 'undefined') {
-          this.flgUpdate = true;
-        }
-     }
-
-  title:String = 'Students';
+  studentColumns:any[] = STUDENT_COLUMNS;
 
   flgUpdate: Boolean = false;
   
   minDate = new Date(1940, 0, 1);
   maxDate = new Date();
   
-  scholarYearCatalog:ScholarYear[] = [
-    { code:1,  description:'First grade' },
-    { code:2,  description:'Second grade' },
-    { code:3,  description:'Third grade' },
-    { code:4,  description:'Fourth grade' },
-  ]
+  scholarYearCatalog:ScholarYear[] = SCHOOL_YEAR_CATALOG;
 
   INITIAL_VALUES:any = {name : '',
                 age : 15,
@@ -67,10 +61,33 @@ export class StudentFormComponent {
         ], 
     birdDate: [new Date(), Validators.required]
 
-});
+  });
 
-constructor(private fb: FormBuilder){
-  this.flgUpdate = false;
+constructor(private fb: FormBuilder, private infoService: InfoService){
+    this.flgUpdate = false;
+
+    this.studentsSubs$ =  this.infoService.getStudentsLst.subscribe(
+      (students: Student[]) => { this.studentsRecords = [...students]; });
+    this.studentSubs$ = this.infoService.getStudent.subscribe(
+      (student: Student) => {
+        this.studentTmp = {...student};
+        //Updating Form
+        this.form.patchValue(this.studentTmp);
+        if (typeof  this.studentTmp?.id !== 'undefined') {
+          this.flgUpdate = true;
+        }
+      }
+    );
+
+
+    this.infoService.loadStudents();
+  }
+
+
+
+ngOnDestroy() {
+  this.studentsSubs$.unsubscribe();
+  this.studentSubs$.unsubscribe();
 }
 
 get name() {
@@ -106,18 +123,24 @@ Update() {
     this.studentTmp.scholarYear = student.scholarYear;
     this.studentTmp.contactNumber = student.contactNumber;
     //this.studentTmp.birthDate = student.birthDate;
-  this.studentEmitter.emit({...this.studentTmp});
-  this.flgUpdate =false;
-  this.reset();
+    //this.studentEmitter.emit({...this.studentTmp});
+    this.infoService.updateStudent(this.studentTmp);
+    this.flgUpdate =false;
+    this.reset();
   }
-
 
 submitForm() {
   let student:Student = this.form.value as Student;
   student.creationDate = new Date();
-  this.studentEmitter.emit({...student});
+  
+  this.infoService.saveStudent(student);
   this.reset();
 }
+
+  
+studentSelectedRecord(id: number) { 
+  this.infoService.loadStudentById(id);
+  }
 
 
 }

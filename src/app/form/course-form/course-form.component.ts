@@ -1,35 +1,26 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Courses } from '../../models/courses.model';
+import { Component, EventEmitter, Input, OnDestroy, Output } from '@angular/core';
+import { COURSE_COLUMNS, Courses } from '../../models/courses.model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { InfoService } from '../../service/info.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-course-form',
   templateUrl: './course-form.component.html',
   styleUrl: './course-form.component.css'
 })
-export class CourseFormComponent {
+export class CourseFormComponent implements OnDestroy {
   
-  title:String = 'Course';
+  private coursesSubs$!: Subscription;
+  private courseSubs$!: Subscription;
 
+  title:string = 'Course';   
+  coursesRecords:Array<Courses> = new Array<Courses>(); 
   courseTmp!:Courses;
+
+  courseColumns: any[] = COURSE_COLUMNS;
   flgUpdate:boolean = false;
-
-  @Output()
-  courseEmitter = new EventEmitter<Courses>();
-
-  @Input("recordSelected")
-  set setRecords(_object:Courses){
-        this.courseTmp = _object; 
-        if (typeof  this.courseTmp !== 'undefined') {
-          this.form.controls.name.setValue(this.courseTmp.name);
-          this.form.controls.instructor.setValue(this.courseTmp.instructor);
-          this.form.controls.hours.setValue(this.courseTmp.hours);
-          this.form.controls.creditHours.setValue(this.courseTmp.creditHours);
-          this.form.controls.numStudents.setValue(this.courseTmp.numStudents); 
-          this.flgUpdate = true;
-        }
-     }
-
+ 
   INITIAL_VALUES:any = {
       name : '', 
       instructor: '',
@@ -63,9 +54,36 @@ export class CourseFormComponent {
   
   });
 
-  constructor(private fb: FormBuilder){
+  constructor(private fb: FormBuilder, private infoService: InfoService) {
 
-  }
+    this.coursesSubs$ =  this.infoService.getCoursesLst.subscribe(
+                            (courses: Courses[]) => { this.coursesRecords = [...courses]; 
+                            });
+
+    this.courseSubs$ = this.infoService.getCourse.subscribe(
+        (course:Courses) => {
+          this.courseTmp = {...course};
+          //Updating Form
+          if (typeof  this.courseTmp !== 'undefined') {
+            this.form.controls.name.setValue(this.courseTmp.name);
+            this.form.controls.instructor.setValue(this.courseTmp.instructor);
+            this.form.controls.hours.setValue(this.courseTmp.hours);
+            this.form.controls.creditHours.setValue(this.courseTmp.creditHours);
+            this.form.controls.numStudents.setValue(this.courseTmp.numStudents); 
+            this.flgUpdate = true;
+          }
+        }
+    );
+
+    this.infoService.loadCourses();
+
+    }
+
+  
+ngOnDestroy() {
+  this.coursesSubs$.unsubscribe();
+  this.courseSubs$.unsubscribe();
+}
 
   get name() {
     return this.form.controls['name'];
@@ -99,17 +117,22 @@ export class CourseFormComponent {
       this.courseTmp.instructor = course.instructor;
       this.courseTmp.hours = course.hours;
       this.courseTmp.creditHours = course.creditHours;
-      this.courseTmp.numStudents = course.numStudents;
-    this.courseEmitter.emit({...this.courseTmp});
-    this.flgUpdate =false;
-    this.reset();
+      this.courseTmp.numStudents = course.numStudents; 
+      this.infoService.updateCourse(this.courseTmp);
+      this.flgUpdate =false;
+      this.reset();
     }
   
   
   submitForm() {
-    let course:Courses = this.form.value as Courses;
-    this.courseEmitter.emit({...course});
+    let course:Courses = this.form.value as Courses; 
+    this.infoService.saveCourse(course);
     this.reset();
   }
+
+  
+  courseSelectedRecord(id: number) { 
+      this.infoService.loadCourseById(id);
+    }
 
 }

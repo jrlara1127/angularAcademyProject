@@ -1,5 +1,5 @@
 export interface ResultMessage {
     message:string;
-    detailMessage: string;
+    details: string;
     success: boolean;
 }

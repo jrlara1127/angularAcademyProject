@@ -37,7 +37,7 @@
         <ng-container matColumnDef="selection">
             <mat-header-cell  *matHeaderCellDef >  </mat-header-cell>
             <mat-cell *matCellDef="let record"> 
-                <button mat-button (click)="selectedRecord(record)" >
+                <button mat-button (click)="selectedRecord(record['id'])" >
                     <span class="buttonText">select</span>
                 </button>
             </mat-cell>

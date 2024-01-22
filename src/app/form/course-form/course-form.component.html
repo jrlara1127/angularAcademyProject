@@ -39,3 +39,4 @@
     </mat-card-content>
 
 </mat-card>
+<table-component [title]="title" [grid-colums]="courseColumns" [records]="coursesRecords" (recordEmitter)="courseSelectedRecord($event)" ></table-component>

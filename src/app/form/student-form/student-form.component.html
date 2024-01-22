@@ -55,4 +55,6 @@
   
     </mat-card-content>
   </mat-card>
+
+  <table-component [title]="title" [grid-colums]="studentColumns" [records]="studentsRecords" (recordEmitter)="studentSelectedRecord($event)" ></table-component>
   

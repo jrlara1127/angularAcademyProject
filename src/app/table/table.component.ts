@@ -54,8 +54,8 @@ export class TableComponent implements  OnInit, AfterViewInit  {
   }
 
 
-  selectedRecord(record:any){ 
-      this.recordEmitter.emit({...record});
+  selectedRecord(id:number){ 
+      this.recordEmitter.emit(id);
   }
 
 
