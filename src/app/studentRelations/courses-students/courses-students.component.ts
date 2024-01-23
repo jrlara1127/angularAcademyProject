@@ -3,6 +3,7 @@ import { InfoService } from '../../service/info.service';
 import { Courses } from '../../models/courses.model';
 import { Subscription } from 'rxjs';
 import { Student } from '../../models/student.model';
+import { StudentCourse } from '../../models/student-course.model';
 
 @Component({
   selector: 'app-courses-students',
@@ -13,46 +14,72 @@ export class CoursesStudentsComponent  {
 
   
   private coursesSubs$!: Subscription;
+  private courseStudentsList$!: Subscription;
   coursesLst:Array<Courses> = new Array<Courses>(); 
   originalStudentList:Array<Student> = new Array<Student>();
 
-  selectedOption: any[] = [1];
+
+  
+  studentAddedColumns:any[] = [
+    { name:'ID', column:'id' }, 
+    { name:'Name',column:'name' },
+    { name:'Email', column:'email'}
+  ];
+
+  avilableStudentsColumns:any[] = [
+    { name:'ID', column:'id' }, 
+    { name:'Name',column:'name' },
+    { name:'Email', column:'email'},
+    { name:' ', column:'add', type:'add' }
+  ];
+
+  selectedCourse: number = 1;
+  selectedStudent: number = 1;
   studentAddedLst!: Student[];
   availableStudentLst!: Student[];
 
   constructor(private infoService:InfoService){
+    
+    this.selectedCourse = 1;
+
     this.coursesSubs$ =  this.infoService.getCoursesLst.subscribe(
-      (courses: Courses[]) => { this.coursesLst = [...courses]; 
+      (courses: Courses[]) => { 
+          this.coursesLst = [...courses]; 
+          this.infoService.loadStudensByCourse(this.selectedCourse);
       });
 
-    infoService.loadCourses();
-    
-    this.selectedOption = [1];
-    this.selectionChange();
-
-    this.infoService.loadStudentsAddlst().subscribe(
+    this.courseStudentsList$ = this.infoService.getStudentsByCourseLst.subscribe(
       (list:Student[]) => {
-        this.originalStudentList = [... list];
-      }
-    );
+        console.log(list);
+        this.studentAddedLst = [...list];
+        this.removeAddedStudents([...this.originalStudentList],[...this.studentAddedLst]);
+      });
+      infoService.loadCourses(); 
+
+      this.infoService.loadStudentsAddlst().subscribe(
+            (list:Student[]) => {
+              this.originalStudentList = [... list];
+        }
+        );
   
   }
-   
-selectionChange() {
-    console.log(this.selectedOption[0]);
-    this.infoService.loadStudensByCourse(this.selectedOption[0]).subscribe(
-        (list:any) => {
-          console.log(list['payload']);
-          this.studentAddedLst = [...list['payload'] as Student[]];
-          this.removeAddedStudents([...this.originalStudentList],[...this.studentAddedLst]);
-        }
-      );
+
+  selectionChange(){
+    console.log("Selected option >> ",this.selectedCourse);
+    this.infoService.loadStudensByCourse(this.selectedCourse);
   }
+   
 
   removeAddedStudents(original:Student[],added:Student[]){
       this.availableStudentLst =  original.filter(item => !added.some(otherItem => item.id === otherItem.id));
   }
 
-  
+
+  studentSelectedRecord(id: number) { 
+    const studentCourse: StudentCourse = {idCourse: this.selectedCourse,idStudent:id};
+    console.log(studentCourse);
+    this.infoService.saveStudentByCourse(studentCourse);
+    }
+   
 
 }

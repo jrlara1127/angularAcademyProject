@@ -1,31 +1,38 @@
 <div class="wrapper">
     <div class="firstCol">
-            <mat-selection-list  [multiple]="false"  [(ngModel)]="selectedOption" (selectionChange)="selectionChange()">
-                @for (course of coursesLst; track course) {
-                    <mat-list-option [value]="course.id">{{course.name}}</mat-list-option>
-                }
-                </mat-selection-list>
+        <!--Courses List-->
+        <mat-form-field>
+            <mat-label>Select Course</mat-label>
+            <mat-select  [(ngModel)]="selectedCourse" (selectionChange)="selectionChange()" required="true">
+                <ng-container *ngFor="let course of coursesLst">
+                    <mat-option [value]="course.id">{{course.id}} {{course.name}}</mat-option>
+                </ng-container>
+            </mat-select>
+        </mat-form-field>  
+
+        <!--Available students List-->
+        <mat-form-field>
+            <mat-label>Select a Student</mat-label>
+            <mat-select  [(ngModel)]="selectedStudent"   required="true">
+                <ng-container *ngFor="let student of availableStudentLst">
+                    <mat-option [value]="student.id">{{student.id}} {{student.name}}</mat-option>
+                </ng-container>
+            </mat-select>
+        </mat-form-field>  
     </div>
     <div class="secondCol">
-        <h3>Students Added</h3>
-            @if(studentAddedLst.length > 0){
-                <ul>
-                    @for(student  of studentAddedLst; track student){
-                        <li> {{student.name}}</li>
-                    }   
-                </ul>
-            }@else {
-                <p>No students Added</p>
-            }
-        <h3>Available Students</h3> 
-            @if(availableStudentLst.length > 0){
-                <ul>
-                    @for(student  of availableStudentLst; track student){
-                        <li> {{student.name}}</li>
-                    }   
-                </ul>
-            }@else {
-                <p>No students Available</p>
-            }
+        <!-- Students Added -->
+        <table-component title ="Students Added" 
+                        [grid-colums]="studentAddedColumns" 
+                        [records]="studentAddedLst" 
+                        (recordEmitter)="studentSelectedRecord($event)">
+        </table-component>
+        
+        <!-- Available Students -->
+        <table-component title ="Available Students"
+                        [grid-colums]="avilableStudentsColumns" 
+                        [records]="availableStudentLst" 
+                        (recordEmitter)="studentSelectedRecord($event)">
+        </table-component> 
     </div>
 </div>

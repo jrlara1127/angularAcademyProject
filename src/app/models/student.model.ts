@@ -32,6 +32,10 @@ export const STUDENT_COLUMNS: any[] = [
     { name:'Birth date',
       column:'birthDate',
       type:'date'
+    },
+    { name:' ',
+      column:'selection',
+      type:'selection'
     }
   ];
 

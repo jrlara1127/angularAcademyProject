@@ -25,6 +25,10 @@ export const COURSE_COLUMNS: any[] = [
     },
     { name:'Students',
       column:'numStudents'
+    },
+    { name:' ',
+      column:'selection',
+      type:'selection'
     }
   ];
 

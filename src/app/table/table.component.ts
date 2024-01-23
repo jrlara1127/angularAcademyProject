@@ -34,7 +34,7 @@ export class TableComponent implements  OnInit, AfterViewInit  {
   set setColumns(_gridColumns:any[]){
         this.gridColumns = _gridColumns;
         _gridColumns.forEach(colum => {this.displayedColumns.push(colum['column'])});
-        this.displayedColumns.push('selection');
+        //this.displayedColumns.push('selection');
      }
   
   @Output()

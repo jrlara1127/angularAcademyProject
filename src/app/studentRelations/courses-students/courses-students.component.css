@@ -2,6 +2,7 @@
     display: grid;
     grid-template-columns: 30% 10% 30% 30%;
     row-gap: 10px;
+    padding-top: 20px;
 }
 
 .firstCol{

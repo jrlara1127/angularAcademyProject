@@ -14,7 +14,7 @@ export class CourseFormComponent implements OnDestroy {
   private coursesSubs$!: Subscription;
   private courseSubs$!: Subscription;
 
-  title:string = 'Course';   
+  title:string = 'Courses';   
   coursesRecords:Array<Courses> = new Array<Courses>(); 
   courseTmp!:Courses;
 

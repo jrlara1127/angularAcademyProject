@@ -32,6 +32,10 @@ export const PROJECT_COLUMNS: any[] = [
   },
   { name:'Num Students',
     column:'numStudents'
+  },
+  { name:' ',
+    column:'selection',
+    type:'selection'
   }
 ];
 

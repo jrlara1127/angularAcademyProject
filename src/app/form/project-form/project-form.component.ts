@@ -17,7 +17,7 @@ export class ProjectFormComponent {
   private projectSubs$!: Subscription;
 
 
-  title:string = 'Project';
+  title:string = 'Projects';
   projectColumns: any[] = PROJECT_COLUMNS;
   projectsRecords!:Array<Project>;
   projectRecordTmp!:Project;

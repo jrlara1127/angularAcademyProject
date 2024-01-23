@@ -6,6 +6,7 @@ import { Courses } from '../models/courses.model';
 import { Project } from '../models/project.model';
 import { response } from 'express';
 import { ResultMessage } from '../models/catalogs/messages';
+import { StudentCourse } from '../models/student-course.model';
 
 @Injectable()
 export class InfoService {
@@ -162,13 +163,31 @@ export class InfoService {
   /***********************************************************************************
    *                        STUDENTS BY COURSES
    **********************************************************************************/
+  
+  getStudentsByCourseLst: Subject<Student[]> = new Subject<Student[]>();
 
-  loadStudensByCourse(id:number):Observable<any>{
-      return this.http.get<any>(this.server+"/courses/students/"+id);
+  loadStudensByCourse(id:number){
+      this.http.get<any>(this.server+"/courses/students/"+id).pipe(map(res=> res['payload']))
+        .subscribe(
+          (list:Student[]) => {
+            console.log("studentList>>",list);
+            this.getStudentsByCourseLst.next([...list]); 
+          }
+        );
   }
 
   loadStudentsAddlst():Observable<any>{   
     return this.http.get<any>(this.server+"/students").pipe(map(res=> res['payload']));
+  }
+  
+  saveStudentByCourse(student: StudentCourse){
+    this.http.post(this.server+"/courses/students",student).subscribe(
+      response => {
+        console.log("Response>>: ",response);
+        this.resultMessage.next(response as ResultMessage);
+        this.loadStudensByCourse(student.idCourse);
+      },  error => {  console.log(error);}
+    );
   }
 
 }

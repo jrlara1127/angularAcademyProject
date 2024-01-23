@@ -1,5 +1,5 @@
 
-<mat-card><mat-card-title style="text-align: center;">{{title}} table</mat-card-title></mat-card>
+<mat-card><mat-card-title style="text-align: center;">{{title}}</mat-card-title></mat-card>
 <br>
 
 <div class="filter">
@@ -31,24 +31,40 @@
                 <mat-header-cell mat-header-cell *matHeaderCellDef mat-sort-header> {{column['name'] }} </mat-header-cell>
                 <mat-cell *matCellDef="let record"> {{record[column['column']]  | slice:0:30 }}...  </mat-cell>
             </ng-container>
+        } @else if(column['type'] == 'selection'){
+            <ng-container matColumnDef="selection">
+                <mat-header-cell  *matHeaderCellDef > {{column['name'] }} </mat-header-cell>
+                <mat-cell *matCellDef="let record"> 
+                    <button mat-button (click)="selectedRecord(record['id'])" >
+                        <span class="buttonText">select</span>
+                    </button>
+                </mat-cell>
+            </ng-container> 
+
+        } @else if(column['type'] == 'add'){
+            <ng-container matColumnDef="add">
+                <mat-header-cell  *matHeaderCellDef > {{column['name'] }} </mat-header-cell>
+                <mat-cell *matCellDef="let record" > 
+                    <button mat-button (click)="selectedRecord(record['id'])" >
+                        <span class="buttonText">Add</span>
+                    </button>
+                </mat-cell>
+            </ng-container> 
+
         }
     }
 
-        <ng-container matColumnDef="selection">
-            <mat-header-cell  *matHeaderCellDef >  </mat-header-cell>
-            <mat-cell *matCellDef="let record"> 
-                <button mat-button (click)="selectedRecord(record['id'])" >
-                    <span class="buttonText">select</span>
-                </button>
-            </mat-cell>
-        </ng-container> 
+    
+    <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" >No data</td>
+    </tr>
         
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
 
 </mat-table>
         <mat-paginator #paginator
-                    [pageSize]="5"
-                    [pageSizeOptions]="[5, 10, 20]"
+                    [pageSize]="3"
+                    [pageSizeOptions]="[3, 6, 12]"
                     [showFirstLastButtons]="true">
         </mat-paginator>
