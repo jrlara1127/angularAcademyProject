@@ -56,7 +56,7 @@ export function getAllStudentsByProject(req: Request, res: Response) {
         if (studentsLst.length > 0){
             res.status(200).json({payload:[...studentsLst]});
         } else{
-            res.status(400).json({payload:[],error: "Students not found"});
+            res.status(200).json({payload:[],error: "Students not found"});
         }
     }, 1000);
 
