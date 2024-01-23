@@ -26,9 +26,9 @@ export function getAllStudentsByCourse(req: Request, res: Response) {
     
     setTimeout(() => {
         if (studentsLst.length > 0){
-            res.status(200).json(studentsLst);
+            res.status(200).json({payload:[...studentsLst]});
         } else{
-            res.status(400).json({error: "Students not found"});
+            res.status(200).json({payload:[],error: "Students not found"});
         }
     }, 1000);
 
@@ -54,9 +54,9 @@ export function getAllStudentsByProject(req: Request, res: Response) {
     
     setTimeout(() => {
         if (studentsLst.length > 0){
-            res.status(200).json(studentsLst);
+            res.status(200).json({payload:[...studentsLst]});
         } else{
-            res.status(400).json({error: "Students not found"});
+            res.status(400).json({payload:[],error: "Students not found"});
         }
     }, 1000);
 
