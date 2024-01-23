@@ -75,8 +75,8 @@ export class CoursesStudentsComponent  {
   }
 
 
-  studentSelectedRecord(id: number) { 
-    const studentCourse: StudentCourse = {idCourse: this.selectedCourse,idStudent:id};
+  studentSelectedRecord() { 
+    const studentCourse: StudentCourse = {idCourse: this.selectedCourse,idStudent:this.selectedStudent};
     console.log(studentCourse);
     this.infoService.saveStudentByCourse(studentCourse);
     }

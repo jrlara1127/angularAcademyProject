@@ -1,38 +1,38 @@
 <div class="wrapper">
     <div class="firstCol">
-        <!--Courses List-->
-        <mat-form-field>
-            <mat-label>Select Course</mat-label>
-            <mat-select  [(ngModel)]="selectedCourse" (selectionChange)="selectionChange()" required="true">
-                <ng-container *ngFor="let course of coursesLst">
-                    <mat-option [value]="course.id">{{course.id}} {{course.name}}</mat-option>
-                </ng-container>
-            </mat-select>
-        </mat-form-field>  
-
-        <!--Available students List-->
-        <mat-form-field>
-            <mat-label>Select a Student</mat-label>
-            <mat-select  [(ngModel)]="selectedStudent"   required="true">
-                <ng-container *ngFor="let student of availableStudentLst">
-                    <mat-option [value]="student.id">{{student.id}} {{student.name}}</mat-option>
-                </ng-container>
-            </mat-select>
-        </mat-form-field>  
+        <div></div>
+        <div class="divflex">
+            <!--Courses List-->
+            <mat-form-field>
+                <mat-label>Select Course</mat-label>
+                <mat-select  [(ngModel)]="selectedCourse" (selectionChange)="selectionChange()" required="true">
+                    <ng-container *ngFor="let course of coursesLst">
+                        <mat-option [value]="course.id">{{course.id}} {{course.name}}</mat-option>
+                    </ng-container>
+                </mat-select>
+            </mat-form-field>  
+            <!--Available students List-->
+            <mat-form-field>
+                <mat-label>Select a Student</mat-label>
+                <mat-select  [(ngModel)]="selectedStudent"   required="true">
+                    <ng-container *ngFor="let student of availableStudentLst">
+                        <mat-option [value]="student.id">{{student.id}} {{student.name}}</mat-option>
+                    </ng-container>
+                </mat-select>
+            </mat-form-field>
+            <!--Button--> 
+            <button mat-raised-button color="primary" type="submit" (click)="studentSelectedRecord()" >
+            Save
+            </button>  
+        </div> 
+        <div></div>
     </div>
     <div class="secondCol">
         <!-- Students Added -->
         <table-component title ="Students Added" 
                         [grid-colums]="studentAddedColumns" 
-                        [records]="studentAddedLst" 
-                        (recordEmitter)="studentSelectedRecord($event)">
+                        [records]="studentAddedLst" >
         </table-component>
         
-        <!-- Available Students -->
-        <table-component title ="Available Students"
-                        [grid-colums]="avilableStudentsColumns" 
-                        [records]="availableStudentLst" 
-                        (recordEmitter)="studentSelectedRecord($event)">
-        </table-component> 
     </div>
 </div>
