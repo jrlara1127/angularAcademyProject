@@ -86,12 +86,15 @@ export class ProjectFormComponent {
     this.projectSubs$ = this.infoService.getProject.subscribe(
       (project: Project) => {
         this.projectTmp = {... project};
+
         //Updating Form
         if (typeof  this.projectTmp !== 'undefined') {
           this.form.controls['name'].setValue(this.projectTmp.name);
           this.form.controls['description'].setValue(this.projectTmp.description);
           this.form.controls['numStudents'].setValue(this.projectTmp.numStudents);
           this.form.controls['instructor'].setValue(this.projectTmp.instructor);
+          this.form.controls['endDate'].setValue(new Date(this.projectTmp.endDate) || null);
+          this.form.controls['startDate'].setValue(new Date(this.projectTmp.startDate) || null);
 
           this.flgUpdate = true;
         }

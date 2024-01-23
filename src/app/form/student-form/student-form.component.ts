@@ -73,7 +73,9 @@ constructor(private fb: FormBuilder, private infoService: InfoService){
         this.studentTmp = {...student};
         //Updating Form
         this.form.patchValue(this.studentTmp);
+        this.form.controls.birdDate.setValue(this.studentTmp.birthDate || null);
         if (typeof  this.studentTmp?.id !== 'undefined') {
+          
           this.flgUpdate = true;
         }
       }
