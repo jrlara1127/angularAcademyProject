@@ -14,6 +14,8 @@ import { ProjectFormComponent } from './form/project-form/project-form.component
 import { InfoService } from './service/info.service';
 import { HttpClientModule } from '@angular/common/http';
 import { AlertMessageComponent } from './utils/alert-message/alert-message.component';
+import { AppRoutingModule } from './app-routing.module';
+import { PageNotFoundComponent } from './utils/page-not-found/page-not-found.component';
 
 @NgModule({
     imports: [
@@ -24,7 +26,8 @@ import { AlertMessageComponent } from './utils/alert-message/alert-message.compo
         FormsModule,
         ReactiveFormsModule,
         MaterialModule,
-        HttpClientModule
+        HttpClientModule,
+        AppRoutingModule
      ],
      declarations: [
        AppComponent, 
@@ -33,7 +36,8 @@ import { AlertMessageComponent } from './utils/alert-message/alert-message.compo
         StudentFormComponent,
         CourseFormComponent,
         ProjectFormComponent,
-        AlertMessageComponent
+        AlertMessageComponent,
+        PageNotFoundComponent
     ],
      providers: [InfoService],
      exports: [AppComponent],

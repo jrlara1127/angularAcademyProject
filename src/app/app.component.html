@@ -4,11 +4,50 @@
     <img src = "../assets/img/angular-logo.svg" alt="Angular Logo"/>
   </div>
   <span class="appTitle">My Application</span>
+
+  <div class="toolbar-tools">
+
+    <a class="menu-item" mat-button routerLink="/students"
+       routerLinkActive="menu-item-active">
+       <mat-icon>person_pin</mat-icon>
+      <span>Students</span>
+    </a>
+
+    <a class="menu-item" mat-button routerLink="/courses"
+       routerLinkActive="menu-item-active">
+       <mat-icon>library_books</mat-icon>
+      <span>Courses</span>
+    </a>
+
+    <a mat-button class="menu-item" 
+       routerLink="/projects"
+       routerLinkActive="menu-item-active">
+      <mat-icon>assignment</mat-icon>
+      <span>Projects</span>
+    </a>
+
+    <a mat-button class="menu-item" 
+       routerLink="/coursesbystudents"
+       routerLinkActive="menu-item-active">
+      <mat-icon>list_alt</mat-icon>
+      <span>Students by Courses</span>
+    </a>
+    
+    <a mat-button class="menu-item" 
+       routerLink="/projectsbystudents"
+       routerLinkActive="menu-item-active">
+      <mat-icon>list_alt</mat-icon>
+      <span>Students by Projects</span>
+    </a>
+
+  </div>
+
 </mat-toolbar>
 
 <div class="container">
   <div></div>
   <div>
+  <!--
     <mat-tab-group>
       <mat-tab label="Students"> 
         <div class="formsCenter">
@@ -26,9 +65,12 @@
         </div>
       </mat-tab>
     </mat-tab-group>
+  -->
+  <router-outlet></router-outlet>
   </div>
   <div></div>
 </div> 
+
 
 
 
