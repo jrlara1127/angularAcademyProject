@@ -29,7 +29,7 @@
             <!-- Date Column -->
             <ng-container matColumnDef="{{column['column']}}">
                 <mat-header-cell mat-header-cell *matHeaderCellDef mat-sort-header> {{column['name'] }} </mat-header-cell>
-                <mat-cell *matCellDef="let record"> {{record[column['column']]  | slice:0:30 }}...  </mat-cell>
+                <mat-cell *matCellDef="let record" title = "{{record[column['column']]}}"> {{record[column['column']]  | slice:0:30 }}...  </mat-cell>
             </ng-container>
         } @else if(column['type'] == 'selection'){
             <ng-container matColumnDef="selection">
