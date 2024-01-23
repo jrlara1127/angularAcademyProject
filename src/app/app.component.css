@@ -39,3 +39,18 @@ div.container{
     row-gap: 20px;
     overflow-y: hidden;
 }
+
+
+.toolbar-tools {
+    padding-left: 20px;
+    display: flex;
+    column-gap: 20px;
+    align-items: end;
+  }
+.menu-item {
+    text-transform: uppercase;
+    cursor:pointer;
+  }
+.menu-item.menu-item-active {
+text-decoration: underline;
+}

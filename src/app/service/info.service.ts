@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, Observer, Subject, catchError, map, of } from 'rxjs'; 
+import { Observable, Observer, Subject, Subscription, catchError, map, of } from 'rxjs'; 
 import { Student } from '../models/student.model';
 import { Courses } from '../models/courses.model';
 import { Project } from '../models/project.model';
@@ -158,5 +158,17 @@ export class InfoService {
   }
  
 
+  
+  /***********************************************************************************
+   *                        STUDENTS BY COURSES
+   **********************************************************************************/
+
+  loadStudensByCourse(id:number):Observable<any>{
+      return this.http.get<any>(this.server+"/courses/students/"+id);
+  }
+
+  loadStudentsAddlst():Observable<any>{   
+    return this.http.get<any>(this.server+"/students").pipe(map(res=> res['payload']));
+  }
 
 }

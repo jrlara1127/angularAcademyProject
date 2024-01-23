@@ -15,6 +15,8 @@ import { InfoService } from './service/info.service';
 import { HttpClientModule } from '@angular/common/http';
 import { AlertMessageComponent } from './utils/alert-message/alert-message.component';
 import { AppRoutingModule } from './app-routing.module';
+import { CoursesStudentsComponent } from './studentRelations/courses-students/courses-students.component';
+import { ProjectsStudentsComponent } from './studentRelations/projects-students/projects-students.component';
 import { PageNotFoundComponent } from './utils/page-not-found/page-not-found.component';
 
 @NgModule({
@@ -37,7 +39,9 @@ import { PageNotFoundComponent } from './utils/page-not-found/page-not-found.com
         CourseFormComponent,
         ProjectFormComponent,
         AlertMessageComponent,
-        PageNotFoundComponent
+        PageNotFoundComponent, 
+        CoursesStudentsComponent,
+        ProjectsStudentsComponent
     ],
      providers: [InfoService],
      exports: [AppComponent],
