@@ -1,0 +1,29 @@
+.wrapper {
+    display: grid;
+    grid-template-columns: 10% 80% 10%;
+    grid-template-rows: 20% 80%;
+    row-gap: 10px;
+    padding-top: 20px;
+}
+
+
+.secondCol{
+    height: 60%;
+    grid-column: 2/3;
+    grid-row: 2/3;
+}
+
+.firstCol{
+    grid-column: 2/3;
+    grid-row: 1/2;
+
+    display: grid;
+    grid-template-columns: 15% 70% 15%;
+}
+
+.divflex{
+    grid-column: 2/3;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

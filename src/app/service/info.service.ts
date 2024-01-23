@@ -7,6 +7,7 @@ import { Project } from '../models/project.model';
 import { response } from 'express';
 import { ResultMessage } from '../models/catalogs/messages';
 import { StudentCourse } from '../models/student-course.model';
+import { StudentProject } from '../models/student-project.model';
 
 @Injectable()
 export class InfoService {
@@ -186,6 +187,33 @@ export class InfoService {
         console.log("Response>>: ",response);
         this.resultMessage.next(response as ResultMessage);
         this.loadStudensByCourse(student.idCourse);
+      },  error => {  console.log(error);}
+    );
+  }
+  
+  /***********************************************************************************
+   *                        STUDENTS BY PROJECT
+   **********************************************************************************/
+  
+  getStudentsByProjectLst: Subject<Student[]> = new Subject<Student[]>();
+
+  loadStudensByProject(id:number){
+      this.http.get<any>(this.server+"/projects/students/"+id).pipe(map(res=> res['payload']))
+        .subscribe(
+          (list:Student[]) => {
+            console.log("studentList>>",list);
+            this.getStudentsByProjectLst.next([...list]); 
+          }
+        );
+  }
+
+  
+  saveStudentByProject(student: StudentProject){
+    this.http.post(this.server+"/projects/students",student).subscribe(
+      response => {
+        console.log("Response>>: ",response);
+        this.resultMessage.next(response as ResultMessage);
+        this.loadStudensByProject(student.idProject);
       },  error => {  console.log(error);}
     );
   }
